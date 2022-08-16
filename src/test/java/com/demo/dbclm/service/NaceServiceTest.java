@@ -17,6 +17,7 @@ import org.mockito.MockitoAnnotations;
 import com.demo.dbclm.domain.NaceData;
 import com.demo.dbclm.repository.NaceRepository;
 import com.demo.dbclm.service.exception.NaceDataNotFoundException;
+import com.demo.dbclm.service.exception.NaceIdAlreadyExistsException;
 
 public class NaceServiceTest {
 
@@ -59,10 +60,10 @@ public class NaceServiceTest {
         assertEquals("NACE data added successfully",response);
     }
 
-//    @Test
-//    public void test_postNaceData_duplicateData_Test() {
-//        given(naceRepository.findById(Mockito.anyLong())).willReturn(Optional.of(Mockito.anyObject()));
-//        assertThrows(NaceIdAlreadyExistsException.class, ()-> naceService.postNaceData(naceDetail));
-//    }
+    @Test
+    public void test_postNaceData_duplicateData_Test() {
+        given(naceRepository.findById(Mockito.anyLong())).willReturn(Optional.of(naceDetail));
+        assertThrows(NaceIdAlreadyExistsException.class, ()-> naceService.postNaceData(naceDetail));
+    }
 
 }
