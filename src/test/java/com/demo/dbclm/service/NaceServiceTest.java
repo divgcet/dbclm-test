@@ -25,7 +25,7 @@ public class NaceServiceTest {
     NaceRepository naceRepository;
 
     @InjectMocks
-    NaceService naceService;
+    NaceService naceService = new NaceServiceImpl();
     
     NaceData naceDetail;
 
