@@ -1,5 +1,7 @@
 package com.demo.dbclm.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,8 @@ public class NaceResource {
 	@Autowired
 	private NaceService naceService;
 	
+	private static final Logger logger = LoggerFactory.getLogger(NaceResource.class);
+	
 	/**
 	 * Controller method to get NACH data based on provided order id.
 	 * 
@@ -34,7 +38,9 @@ public class NaceResource {
 	
 	@GetMapping("/getNaceDataByorderId/{orderId}")
 	public ResponseEntity<NaceData> getNaceDataByorderId(@PathVariable Long orderId) {
+		logger.info("Entering getNaceDataByorderId() with orderId: "+ orderId);
 		NaceData naceDTO = naceService.getNaceDataByorderId(orderId);
+		logger.info("Exiting getNaceDataByorderId() with naceDTO: "+ naceDTO);
         return new ResponseEntity<>(naceDTO, HttpStatus.OK);
 	}
 	
@@ -47,7 +53,9 @@ public class NaceResource {
 	
 	@PostMapping("/postNaceData")
 	public ResponseEntity<String> postNaceData(@RequestBody NaceData naceDTOBody) {
+		logger.info("Entering postNaceData() with @RequestBody: "+ naceDTOBody);
 		String response = naceService.postNaceData(naceDTOBody);
+		logger.info("Exiting postNaceData() with response: "+ response);
         return new ResponseEntity<>(response,HttpStatus.CREATED);
 	}
 	

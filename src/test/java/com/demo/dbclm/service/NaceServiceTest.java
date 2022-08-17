@@ -27,11 +27,10 @@ public class NaceServiceTest {
     @InjectMocks
     NaceService naceService = new NaceServiceImpl();
     
-    NaceData naceDetail;
+    NaceData naceDetail = new NaceData(1221l, 33, "code", "parent", "description", "itemsIncluded", "itemsAlsoIncluded", "rulings", "itemsExcluded", "refrences");
 
     @BeforeEach
     public void setUp(){
-    	naceDetail = new NaceData(1221l, 33, "code", "parent", "description", "itemsIncluded", "itemsAlsoIncluded", "rulings", "itemsExcluded", "refrences");
         MockitoAnnotations.initMocks(this);
     }
 
